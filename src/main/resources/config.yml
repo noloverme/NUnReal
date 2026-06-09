@@ -1,0 +1,701 @@
+# ============================
+# NUnReal Configuration
+# ============================
+
+# Настройки крафта
+craft:
+  enabled: true
+  slots:
+    A: NETHERITE_INGOT
+    B: AMETHYST_SHARD
+    C: BLAZE_ROD
+    D: DIAMOND
+  result-name: "§6Блок Способностей"
+  result-lore:
+    - "§7Поставьте и нажмите ПКМ"
+    - "§7чтобы выбрать способность"
+
+# Настройки блоков
+blocks:
+  one-per-chunk: true
+  require-pickaxe: true
+  break-time-ticks: 20
+  insta-break: false
+  drop-item: true
+  messages:
+    placed: "§aБлок способностей установлен! Нажмите ПКМ для настройки."
+    already-exists: "§cВ этом чанке уже есть блок способностей!"
+    broken: "§eБлок способностей разрушен."
+    need-pickaxe: "§cИспользуйте кирку для разрушения!"
+
+# Настройки экономики
+economy:
+  default-cost:
+    material: DIAMOND
+    amount: 1
+  ability-costs:
+    MINING:
+      material: DIAMOND
+      amount: 20
+    LONG_ARM:
+      material: DIAMOND
+      amount: 20
+    ANTI_KNOCKBACK:
+      material: DIAMOND
+      amount: 1
+    LUCK:
+      material: DIAMOND
+      amount: 5
+    DWARF:
+      material: DIAMOND
+      amount: 1
+    FALL_RESIST:
+      material: DIAMOND
+      amount: 1
+    GROWTH:
+      material: DIAMOND
+      amount: 5
+    MAGNET:
+      material: DIAMOND
+      amount: 10
+    FLIGHT:
+      material: NETHERITE_INGOT
+      amount: 10
+    INFINITE_TRADES:
+      material: NETHERITE_INGOT
+      amount: 10
+    KEEP_RESOURCES:
+      material: DIAMOND
+      amount: 32
+    SATURATION:
+      material: DIAMOND
+      amount: 3
+    AUTO_SMELT:
+      material: DIAMOND
+      amount: 15
+    HOLY_GROUND:
+      material: DIAMOND
+      amount: 20
+    THRIFTY_CRAFT:
+      material: NETHERITE_INGOT
+      amount: 2
+  messages:
+    not-enough: "§cНедостаточно {item}! Нужно: {amount} шт."
+    ability-set: "§aСпособность §e{ability} §aактивирована!"
+    ability-disabled: "§eСпособность отключена."
+    already-active: "§eЭта способность уже активна в чанке."
+
+# Настройки меню
+menu:
+  title: "§8Выбор способности"
+  size: 18
+  filler:
+    enabled: true
+    material: GRAY_STAINED_GLASS_PANE
+    name: " "
+  abilities:
+    MINING:
+      slot: 0
+      material: GOLDEN_PICKAXE
+      name: "§eКопание"
+      lore:
+        - "§7+30.0 к скорости ломания"
+        - ""
+        - "§eЦена: 20 алмазов"
+      active-lore-line: "§aАктивно"
+    LONG_ARM:
+      slot: 1
+      material: STICK
+      name: "§eДлиннорукий"
+      lore:
+        - "§7+15.0 к дальности взаимодействия"
+        - ""
+        - "§eЦена: 20 алмазов"
+      active-lore-line: "§aАктивно"
+    ANTI_KNOCKBACK:
+      slot: 2
+      material: SHIELD
+      name: "§eАнтиОтдача"
+      lore:
+        - "§7+30.0 к сопротивлению отдаче"
+        - ""
+        - "§eЦена: 1 алмаз"
+      active-lore-line: "§aАктивно"
+    LUCK:
+      slot: 3
+      material: RABBIT_FOOT
+      name: "§eЛудоман"
+      lore:
+        - "§7+30.0 к удаче"
+        - ""
+        - "§eЦена: 5 алмазов"
+      active-lore-line: "§aАктивно"
+    DWARF:
+      slot: 4
+      material: FEATHER
+      name: "§eКарлик"
+      lore:
+        - "§7-0.75 к масштабу"
+        - ""
+        - "§eЦена: 1 алмаз"
+      active-lore-line: "§aАктивно"
+    FALL_RESIST:
+      slot: 5
+      material: LEATHER_BOOTS
+      name: "§eМягкое падение"
+      lore:
+        - "§7Безопасная высота падения"
+        - "§7увеличена в этом чанке"
+        - ""
+        - "§eЦена: 1 алмаз"
+      active-lore-line: "§aАктивно"
+    GROWTH:
+      slot: 9
+      material: WHEAT
+      name: "§aРост"
+      lore:
+        - "§7Растения в чанке растут"
+        - "§7примерно на 50% быстрее"
+        - ""
+        - "§eЦена: 5 алмазов"
+      active-lore-line: "§aАктивно"
+    MAGNET:
+      slot: 10
+      material: HOPPER
+      name: "§bМагнит предметов"
+      lore:
+        - "§7Выброшенные предметы"
+        - "§7притягиваются к игроку"
+        - ""
+        - "§eЦена: 10 алмазов"
+      active-lore-line: "§aАктивно"
+    FLIGHT:
+      slot: 11
+      material: ELYTRA
+      name: "§dПолёт"
+      lore:
+        - "§7Игроки в чанке могут летать"
+        - "§7пока находятся внутри него"
+        - ""
+        - "§cЦена: 10 незеритовых слитков"
+      active-lore-line: "§aАктивно"
+    INFINITE_TRADES:
+      slot: 12
+      material: EMERALD
+      name: "§aБесконечные трейды"
+      lore:
+        - "§7Жители в этом чанке"
+        - "§7не исчерпывают сделки"
+        - ""
+        - "§cЦена: 10 незеритовых слитков"
+      active-lore-line: "§aАктивно"
+    KEEP_RESOURCES:
+      slot: 13
+      material: TOTEM_OF_UNDYING
+      name: "§6Сохранение ресурсов"
+      lore:
+        - "§7При смерти в этом чанке"
+        - "§7сохраняются предметы и опыт"
+        - ""
+        - "§cЦена: 32 алмаза"
+      active-lore-line: "§aАктивно"
+    SATURATION:
+      slot: 6
+      material: COOKED_BEEF
+      name: "§6Сытость"
+      lore:
+        - "§7Шкала голода не снижается"
+        - "§7пока вы в этом чанке"
+        - ""
+        - "§eЦена: 3 алмаза"
+      active-lore-line: "§aАктивно"
+    AUTO_SMELT:
+      slot: 14
+      material: BLAZE_POWDER
+      name: "§6Авто-плавка"
+      lore:
+        - "§7Железная, золотая и медная"
+        - "§7руда автоматически переплавляется"
+        - "§7в готовые слитки"
+        - ""
+        - "§eЦена: 15 алмазов"
+      active-lore-line: "§aАктивно"
+    HOLY_GROUND:
+      slot: 15
+      material: GLOWSTONE_DUST
+      name: "§eСвятая земля"
+      lore:
+        - "§7Блокирует естественный"
+        - "§7спавн враждебных мобов"
+        - "§7в этом чанке"
+        - ""
+        - "§eЦена: 20 алмазов"
+      active-lore-line: "§aАктивно"
+    THRIFTY_CRAFT:
+      slot: 16
+      material: CRAFTING_TABLE
+      name: "§bБережливый крафт"
+      lore:
+        - "§7При крафте на верстаке"
+        - "§715% шанс вернуть ингредиент"
+        - ""
+        - "§cЦена: 2 незеритовых слитка"
+      active-lore-line: "§aАктивно"
+  disable-button:
+    slot: 17
+    material: BARRIER
+    name: "§cОтключить"
+    lore:
+      - "§7Снять текущую способность"
+
+# Настройки атрибутов
+abilities:
+  MINING:
+    attribute: BLOCK_BREAK_SPEED
+    value: 30.0
+  LONG_ARM:
+    attribute: ENTITY_INTERACTION_RANGE
+    value: 15.0
+  ANTI_KNOCKBACK:
+    attribute: KNOCKBACK_RESISTANCE
+    value: 30.0
+  LUCK:
+    attribute: LUCK
+    value: 30.0
+  DWARF:
+    attribute: SCALE
+    value: -0.75
+  FALL_RESIST:
+    attribute: SAFE_FALL_DISTANCE
+    value: 10.0
+  GROWTH:
+    extra-growth-chance: 0.5
+    ageable-only: true
+  MAGNET:
+    radius: 8.0
+    speed: 0.30
+    interval-ticks: 5
+    max-items-per-tick: 100
+  FLIGHT:
+    fly-speed: 0.1
+    exit-protection: SLOW_FALLING
+    slow-falling-seconds: 5
+  INFINITE_TRADES:
+    villagers-only: true
+    reopen-exhausted-trades: true
+    close-open-trade-on-deactivate: true
+  KEEP_RESOURCES:
+    keep-inventory: true
+    keep-exp: true
+    clear-item-drops: true
+    clear-exp-drops: true
+  SATURATION:
+    freeze-food-level: true
+    freeze-saturation: true
+  AUTO_SMELT:
+    affected-blocks:
+      IRON_ORE: IRON_INGOT
+      DEEPSLATE_IRON_ORE: IRON_INGOT
+      GOLD_ORE: GOLD_INGOT
+      DEEPSLATE_GOLD_ORE: GOLD_INGOT
+      COPPER_ORE: COPPER_INGOT
+      DEEPSLATE_COPPER_ORE: COPPER_INGOT
+    respect-silk-touch: true
+    respect-fortune: true
+  HOLY_GROUND:
+    block-raids: false
+    blocked-spawn-reasons:
+      - NATURAL
+      - JOCKEY
+      - PATROL
+      - REINFORCEMENTS
+  THRIFTY_CRAFT:
+    chance: 0.15
+    affect-vanilla-recipes: true
+    affect-custom-recipes: true
+    workbench-only: true
+
+# Настройки периодической задачи
+task:
+  interval-ticks: 20
+
+# Сообщения
+messages:
+  plugin-enabled: "§aNUnReal плагин успешно загружен!"
+  plugin-disabled: "§eNUnReal плагин выгружается..."
+  config-reloaded: "§aКонфигурация перезагружена."
+  flight-enabled: "§dВы можете летать в этом чанке."
+  flight-disabled: "§7Вы покинули зону полёта."
+  ability-already-active: "§eЭта способность уже активна в чанке."
+  resources-kept: "§6Ваши ресурсы сохранены благодаря способности чанка."
+  no-permission: "§cНет прав!"
+  thrifty-craft-triggered: "§aБережливый крафт! Вам вернулся 1x {item}."
+
+# Настройки системы спавнеров
+spawners:
+  enabled: true
+  require-silk-touch: true
+
+  item:
+    name-format: "§6Спавнер: §e{mob}"
+    lore:
+      - "§7Поставьте для создания"
+      - "§7генератора мобов"
+    enchant-glow: true
+
+  messages:
+    spawner-placed: "§aСпавнер {mob} установлен."
+    spawner-broken: "§eСпавнер {mob} получен."
+    invalid-spawner: "§cОшибка: неизвестный тип спавнера."
+    no-silk-touch: "§cНужен инструмент с Шёлковым касанием."
+
+  mob-names:
+    SKELETON: "Скелет"
+    ZOMBIE: "Зомби"
+    WITHER_SKELETON: "Визер-скелет"
+    GHAST: "Гаст"
+    CREEPER: "Крипер"
+    HOGLIN: "Хоглин"
+    SHULKER: "Шалкер"
+    SPIDER: "Паук"
+    BLAZE: "Ифрит"
+    VINDICATOR: "Поборник"
+    MAGMA_CUBE: "Магмовый куб"
+    SLIME: "Слизень"
+    ENDERMAN: "Эндермен"
+    COW: "Корова"
+    MOOSHROOM: "Грибная корова"
+    BREEZE: "Бриз"
+    SNIFFER: "Сниффер"
+    IRON_GOLEM: "Железный голем"
+    ARMADILLO: "Броненосец"
+    WOLF: "Волк"
+    TURTLE: "Черепаха"
+    VILLAGER: "Житель"
+    SALMON: "Лосось"
+    COD: "Треска"
+    CAT: "Кот"
+    DROWNED: "Утопленник"
+    SNOW_GOLEM: "Снежный голем"
+
+  recipes:
+    SKELETON:
+      enabled: true
+      shape:
+        - "G C G"
+        - "D B D"
+        - "A A A"
+      ingredients:
+        G: "BONE"
+        C: "BOW"
+        B: "NETHERITE_INGOT"
+        D: "ARROW"
+        A: "DIAMOND"
+    ZOMBIE:
+      enabled: true
+      shape:
+        - "C D C"
+        - "K B K"
+        - "A A A"
+      ingredients:
+        C: "IRON_INGOT"
+        D: "POTATO"
+        K: "ROTTEN_FLESH"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    WITHER_SKELETON:
+      enabled: true
+      shape:
+        - "C D C"
+        - "G B G"
+        - "B A B"
+      ingredients:
+        C: "STONE_SWORD"
+        D: "WITHER_SKELETON_SKULL"
+        G: "BONE"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    GHAST:
+      enabled: true
+      shape:
+        - "C D C"
+        - "H B H"
+        - "A B A"
+      ingredients:
+        C: "GHAST_TEAR"
+        D: "DRIED_GHAST"
+        H: "GUNPOWDER"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    CREEPER:
+      enabled: true
+      shape:
+        - "C H D"
+        - "C B D"
+        - "B B B"
+      ingredients:
+        C: "MUSIC_DISC_13"
+        H: "GUNPOWDER"
+        D: "MUSIC_DISC_CAT"
+        B: "NETHERITE_INGOT"
+    HOGLIN:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F B F"
+        - "A A A"
+      ingredients:
+        C: "GOLD_NUGGET"
+        D: "MUSIC_DISC_PIGSTEP"
+        E: "GOLD_INGOT"
+        F: "PORKCHOP"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    SHULKER:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E B E"
+        - "A B A"
+      ingredients:
+        C: "SHULKER_SHELL"
+        D: "SHULKER_BOX"
+        E: "END_ROD"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    SPIDER:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E A F"
+        - "A A A"
+      ingredients:
+        C: "STRING"
+        D: "COBWEB"
+        E: "FERMENTED_SPIDER_EYE"
+        F: "SPIDER_EYE"
+        A: "DIAMOND"
+    BLAZE:
+      enabled: true
+      shape:
+        - "I C I"
+        - "D B D"
+        - "B A B"
+      ingredients:
+        I: "BLAZE_POWDER"
+        C: "FIRE_CHARGE"
+        D: "BLAZE_ROD"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    VINDICATOR:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E B E"
+        - "A B A"
+      ingredients:
+        C: "EMERALD"
+        D: "WHITE_BANNER"
+        E: "IRON_AXE"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    MAGMA_CUBE:
+      enabled: true
+      shape:
+        - "C D C"
+        - "I B I"
+        - "A B A"
+      ingredients:
+        C: "MAGMA_CREAM"
+        D: "SPAWNER"
+        I: "BLAZE_POWDER"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    SLIME:
+      enabled: true
+      shape:
+        - "C C C"
+        - "D B D"
+        - "B A B"
+      ingredients:
+        C: "SLIME_BALL"
+        D: "TIPPED_ARROW"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    ENDERMAN:
+      enabled: true
+      shape:
+        - "C C C"
+        - "D B D"
+        - "A B A"
+      ingredients:
+        C: "ENDER_PEARL"
+        D: "CHORUS_FRUIT"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    COW:
+      enabled: true
+      shape:
+        - "C D C"
+        - "J A J"
+        - "A A A"
+      ingredients:
+        C: "LEATHER"
+        D: "HAY_BLOCK"
+        J: "BEEF"
+        A: "DIAMOND"
+    MOOSHROOM:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E B E"
+        - "A A A"
+      ingredients:
+        C: "RED_MUSHROOM"
+        D: "SPAWNER"
+        E: "RED_MUSHROOM_BLOCK"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    BREEZE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "D B D"
+        - "A B A"
+      ingredients:
+        C: "COPPER_BLOCK"
+        D: "BREEZE_ROD"
+        E: "OXIDIZED_COPPER"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    SNIFFER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "D B D"
+        - "A B A"
+      ingredients:
+        C: "PITCHER_PLANT"
+        D: "SNIFFER_EGG"
+        E: "TORCHFLOWER"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    IRON_GOLEM:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E B E"
+        - "A B A"
+      ingredients:
+        C: "IRON_INGOT"
+        D: "POPPY"
+        E: "IRON_BLOCK"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    ARMADILLO:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "WOLF_ARMOR"
+        D: "SPAWNER"
+        E: "BRUSH"
+        F: "ARMADILLO_SCUTE"
+        A: "DIAMOND"
+    WOLF:
+      enabled: true
+      shape:
+        - "K G K"
+        - "G A G"
+        - "A A A"
+      ingredients:
+        K: "ROTTEN_FLESH"
+        G: "BONE"
+        A: "DIAMOND"
+    TURTLE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F B F"
+        - "A B A"
+      ingredients:
+        C: "TURTLE_SCUTE"
+        D: "TURTLE_HELMET"
+        E: "SEAGRASS"
+        F: "TURTLE_EGG"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    VILLAGER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F B F"
+        - "B B B"
+      ingredients:
+        C: "EMERALD_BLOCK"
+        D: "DEEPSLATE_EMERALD_ORE"
+        E: "EMERALD_ORE"
+        F: "ENCHANTED_BOOK"
+        B: "NETHERITE_INGOT"
+    SALMON:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E A E"
+        - "A A A"
+      ingredients:
+        C: "WATER_BUCKET"
+        D: "SALMON"
+        E: "BONE_MEAL"
+        A: "DIAMOND"
+    COD:
+      enabled: true
+      shape:
+        - "C D C"
+        - "E A E"
+        - "A A A"
+      ingredients:
+        C: "WATER_BUCKET"
+        D: "COD"
+        E: "BONE_MEAL"
+        A: "DIAMOND"
+    CAT:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A L"
+        - "A A A"
+      ingredients:
+        C: "SALMON"
+        D: "STRING"
+        E: "COD"
+        F: "SPAWNER"
+        L: "SPAWNER"
+        A: "DIAMOND"
+    DROWNED:
+      enabled: true
+      shape:
+        - "C D E"
+        - "K B K"
+        - "B A B"
+      ingredients:
+        C: "NAUTILUS_SHELL"
+        D: "TRIDENT"
+        E: "FISHING_ROD"
+        K: "ROTTEN_FLESH"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    SNOW_GOLEM:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SNOWBALL"
+        D: "CARVED_PUMPKIN"
+        E: "POWDER_SNOW_BUCKET"
+        F: "SNOW_BLOCK"
+        A: "DIAMOND"

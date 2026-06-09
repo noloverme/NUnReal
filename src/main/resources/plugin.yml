@@ -1,0 +1,30 @@
+name: NUnReal
+version: 1.0.0
+description: Custom command block plugin with ability modifiers
+main: com.noloverme.nunreal.NUnReal
+api-version: '1.21'
+authors:
+  - noloverme
+
+permissions:
+  nunreal.admin:
+    description: Access to NUnReal admin commands
+    default: op
+  nunreal.craft:
+    description: Permission to craft ability blocks
+    default: true
+  nunreal.spawner.place:
+    description: Permission to place ability blocks
+    default: true
+  nunreal.use:
+    description: Permission to use ability block menu
+    default: true
+  nunreal.spawner.break:
+    description: Permission to break ability blocks
+    default: op
+
+commands:
+  nunreal:
+    description: Manage NUnReal plugin
+    usage: /nunreal <reload|give> [player]
+    permission: nunreal.admin
