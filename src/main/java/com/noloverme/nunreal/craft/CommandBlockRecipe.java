@@ -23,11 +23,12 @@ public class CommandBlockRecipe {
         NamespacedKey key = new NamespacedKey(plugin, "command_block_recipe");
 
         ShapedRecipe recipe = new ShapedRecipe(key, createCommandBlock(plugin));
-        recipe.shape(
-            "ABA",
-            "CAC",
-            "ADA"
-        );
+
+        String shape1 = plugin.getConfig().getString("craft.shape.1", "ABA");
+        String shape2 = plugin.getConfig().getString("craft.shape.2", "CAC");
+        String shape3 = plugin.getConfig().getString("craft.shape.3", "ADA");
+
+        recipe.shape(shape1, shape2, shape3);
 
         String slotA = plugin.getConfig().getString("craft.slots.A", "NETHERITE_INGOT");
         String slotB = plugin.getConfig().getString("craft.slots.B", "AMETHYST_SHARD");

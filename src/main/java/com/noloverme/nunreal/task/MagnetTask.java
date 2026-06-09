@@ -95,9 +95,7 @@ public class MagnetTask extends BukkitRunnable {
                 continue;
             }
 
-            if (plugin.getAbilityManager().getCurrentAbility(player) == AbilityType.MAGNET) {
-                players.add(player);
-            }
+            players.add(player);
         }
 
         return players;
