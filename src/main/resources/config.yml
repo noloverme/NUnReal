@@ -314,6 +314,7 @@ abilities:
     affect-vanilla-recipes: true
     affect-custom-recipes: true
     workbench-only: true
+    blacklisted-items: []
 
 # Настройки периодической задачи
 task:

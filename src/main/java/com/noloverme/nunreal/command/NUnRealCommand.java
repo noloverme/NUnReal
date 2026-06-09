@@ -5,6 +5,7 @@ import com.noloverme.nunreal.craft.CommandBlockRecipe;
 import com.noloverme.nunreal.spawner.SpawnerItemFactory;
 import com.noloverme.nunreal.spawner.SpawnerType;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,7 +25,7 @@ public class NUnRealCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
-            sender.sendMessage("§c/nunreal <reload|give|givespawner> [args...]");
+            sender.sendMessage("§c/nunreal <reload|give|givespawner|blockcraft> [args...]");
             return true;
         }
 
@@ -111,7 +112,35 @@ public class NUnRealCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        sender.sendMessage("§c/nunreal <reload|give|givespawner> [args...]");
+        if (subCommand.equals("blockcraft")) {
+            if (!sender.hasPermission("nunreal.admin")) {
+                sender.sendMessage("§cНет прав!");
+                return true;
+            }
+
+            if (args.length < 2) {
+                sender.sendMessage("§c/nunreal blockcraft <material|id>");
+                return true;
+            }
+
+            String itemName = args[1].toUpperCase();
+            var blacklist = plugin.getConfigManager().getStringList("abilities.THRIFTY_CRAFT.blacklisted-items");
+
+            if (blacklist.contains(itemName)) {
+                blacklist.remove(itemName);
+                plugin.getConfigManager().getConfig().set("abilities.THRIFTY_CRAFT.blacklisted-items", blacklist);
+                plugin.getConfigManager().saveConfig();
+                sender.sendMessage("§aПредмет " + itemName + " удалён из чёрного списка.");
+            } else {
+                blacklist.add(itemName);
+                plugin.getConfigManager().getConfig().set("abilities.THRIFTY_CRAFT.blacklisted-items", blacklist);
+                plugin.getConfigManager().saveConfig();
+                sender.sendMessage("§aПредмет " + itemName + " добавлен в чёрный список.");
+            }
+            return true;
+        }
+
+        sender.sendMessage("§c/nunreal <reload|give|givespawner|blockcraft> [args...]");
         return true;
     }
 
@@ -130,6 +159,9 @@ public class NUnRealCommand implements CommandExecutor, TabCompleter {
                 if ("givespawner".startsWith(args[0].toLowerCase())) {
                     completions.add("givespawner");
                 }
+                if ("blockcraft".startsWith(args[0].toLowerCase())) {
+                    completions.add("blockcraft");
+                }
             }
         } else if (args.length == 2) {
             if (args[0].equalsIgnoreCase("give") && sender.hasPermission("nunreal.admin")) {
@@ -142,6 +174,12 @@ public class NUnRealCommand implements CommandExecutor, TabCompleter {
                 for (SpawnerType type : SpawnerType.values()) {
                     if (type.name().toLowerCase().startsWith(args[1].toLowerCase())) {
                         completions.add(type.name());
+                    }
+                }
+            } else if (args[0].equalsIgnoreCase("blockcraft") && sender.hasPermission("nunreal.admin")) {
+                for (Material material : Material.values()) {
+                    if (material.name().toLowerCase().startsWith(args[1].toLowerCase())) {
+                        completions.add(material.name());
                     }
                 }
             }

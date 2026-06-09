@@ -60,6 +60,11 @@ public class ThriftyCraftListener implements Listener {
         ItemStack returnedIngredient = ingredients.get((int) (Math.random() * ingredients.size())).clone();
         returnedIngredient.setAmount(1);
 
+        List<String> blacklist = plugin.getConfigManager().getStringList("abilities.THRIFTY_CRAFT.blacklisted-items");
+        if (blacklist.contains(returnedIngredient.getType().toString())) {
+            return;
+        }
+
         if (player.getInventory().firstEmpty() != -1) {
             player.getInventory().addItem(returnedIngredient);
         } else {
