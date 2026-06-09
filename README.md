@@ -54,7 +54,7 @@
 
 ```
 Java 21+
-Paper/Spigot Server (протестировано на 1.21)
+Paper/Spigot Server (протестировано на 1.21.8)
 Maven 3.6+ (для сборки)
 ```
 
@@ -62,7 +62,7 @@ Maven 3.6+ (для сборки)
 
 #### Шаг 1: Подготовка кода
 ```bash
-git clone <repository-url>
+git clone https://github.com/noloverme/NUnReal/
 cd NUnReal
 ```
 
@@ -80,14 +80,14 @@ cp target/NUnReal-1.0.1.jar /path/to/server/plugins/
 
 #### Шаг 4: Перезагрузка сервера
 ```
-/reload
+/restart
 ```
 
 Или просто перезагрузите сервер полностью.
 
 #### Шаг 5: Проверка
 ```
-/nunreal give @s
+/nunreal give
 ```
 
 Вы должны получить блок способностей в инвентарь.
@@ -305,9 +305,8 @@ spawners:
 
 ```
 Примеры:
-  /nunreal give @s              # Себе
-  /nunreal give PlayerName      # Конкретному игроку
-  /nunreal give @a              # Всем онлайн игрокам
+  /nunreal give
+  /nunreal give PlayerName
 ```
 
 #### `/nunreal givespawner <моб> [игрок]`
@@ -317,7 +316,6 @@ spawners:
 Примеры:
   /nunreal givespawner SKELETON
   /nunreal givespawner SKELETON PlayerName
-  /nunreal givespawner ZOMBIE @s
 ```
 
 **Доступные мобы:**
@@ -497,7 +495,7 @@ economy:
 
 **Действия:**
 ```
-1. /nunreal give @s          # Получить блок способностей
+1. /nunreal give          # Получить блок способностей
 2. Поместить блок в чанк
 3. ПКМ по блоку → выбрать MINING
 4. Подтвердить (10 алмазов)
@@ -645,7 +643,7 @@ craft:
 /nunreal reload
 
 # Снова попробовать
-/nunreal give @s
+/nunreal give
 
 # Если не помогает - проверить логи
 tail -f logs/latest.log | grep -i nunreal
