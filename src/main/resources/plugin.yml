@@ -16,15 +16,21 @@ permissions:
   nunreal.spawner.place:
     description: Permission to place ability blocks
     default: true
-  nunreal.use:
-    description: Permission to use ability block menu
-    default: true
   nunreal.spawner.break:
     description: Permission to break ability blocks
     default: op
+  nunreal.use:
+    description: Permission to use ability block menu
+    default: true
+  nunreal.place:
+    description: Permission to place ability blocks
+    default: true
+  nunreal.break:
+    description: Permission to break ability blocks
+    default: true
 
 commands:
   nunreal:
     description: Manage NUnReal plugin
-    usage: /nunreal <reload|give> [player]
+    usage: /nunreal <reload|give|givespawner> [player]
     permission: nunreal.admin
