@@ -2,6 +2,7 @@ package com.noloverme.nunreal.menu;
 
 import com.noloverme.nunreal.ability.AbilityType;
 import com.noloverme.nunreal.block.CommandBlockData;
+import com.noloverme.nunreal.util.MaterialUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -37,8 +38,8 @@ public class AbilityMenu {
         String fillerName = plugin.getConfig().getString("menu.filler.name", " ");
 
         if (fillerEnabled) {
-            try {
-                Material material = Material.valueOf(fillerMaterial);
+            Material material = MaterialUtils.getMaterial(fillerMaterial);
+            if (material != null) {
                 ItemStack filler = new ItemStack(material, 1);
                 ItemMeta meta = filler.getItemMeta();
 
@@ -53,7 +54,7 @@ public class AbilityMenu {
                         inventory.setItem(i, filler);
                     }
                 }
-            } catch (IllegalArgumentException e) {
+            } else {
                 plugin.getLogger().warning("Invalid filler material: " + fillerMaterial);
             }
         }
@@ -94,36 +95,36 @@ public class AbilityMenu {
         String name = plugin.getConfig().getString(path + ".name", ability.getDisplayName());
         List<String> lore = plugin.getConfig().getStringList(path + ".lore");
 
-        try {
-            Material material = Material.valueOf(materialName);
-            ItemStack item = new ItemStack(material, 1);
-            ItemMeta meta = item.getItemMeta();
-
-            if (meta != null) {
-                meta.displayName(net.kyori.adventure.text.Component.text(name));
-
-                List<net.kyori.adventure.text.Component> loreComponents = new ArrayList<>();
-                for (String loreLine : lore) {
-                    loreComponents.add(net.kyori.adventure.text.Component.text(loreLine));
-                }
-
-                if (blockData.getAbility() == ability) {
-                    String activeLine = plugin.getConfig().getString(path + ".active-lore-line", "§aАктивно");
-                    loreComponents.add(net.kyori.adventure.text.Component.text(activeLine));
-                    meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
-                    meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                }
-
-                meta.lore(loreComponents);
-                meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                item.setItemMeta(meta);
-            }
-
-            return item;
-        } catch (IllegalArgumentException e) {
+        Material material = MaterialUtils.getMaterial(materialName);
+        if (material == null) {
             plugin.getLogger().warning("Invalid material: " + materialName);
             return null;
         }
+
+        ItemStack item = new ItemStack(material, 1);
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null) {
+            meta.displayName(net.kyori.adventure.text.Component.text(name));
+
+            List<net.kyori.adventure.text.Component> loreComponents = new ArrayList<>();
+            for (String loreLine : lore) {
+                loreComponents.add(net.kyori.adventure.text.Component.text(loreLine));
+            }
+
+            if (blockData.getAbility() == ability) {
+                String activeLine = plugin.getConfig().getString(path + ".active-lore-line", "§aАктивно");
+                loreComponents.add(net.kyori.adventure.text.Component.text(activeLine));
+                meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
+                meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            }
+
+            meta.lore(loreComponents);
+            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            item.setItemMeta(meta);
+        }
+
+        return item;
     }
 
     private ItemStack createDisableButton() {
@@ -131,25 +132,25 @@ public class AbilityMenu {
         String name = plugin.getConfig().getString("menu.disable-button.name", "§cОтключить");
         List<String> lore = plugin.getConfig().getStringList("menu.disable-button.lore");
 
-        try {
-            Material material = Material.valueOf(materialName);
-            ItemStack item = new ItemStack(material, 1);
-            ItemMeta meta = item.getItemMeta();
-
-            if (meta != null) {
-                meta.displayName(net.kyori.adventure.text.Component.text(name));
-                meta.lore(lore.stream()
-                    .map(s -> net.kyori.adventure.text.Component.text(s))
-                    .toList());
-                meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-                item.setItemMeta(meta);
-            }
-
-            return item;
-        } catch (IllegalArgumentException e) {
+        Material material = MaterialUtils.getMaterial(materialName);
+        if (material == null) {
             plugin.getLogger().warning("Invalid material: " + materialName);
             return null;
         }
+
+        ItemStack item = new ItemStack(material, 1);
+        ItemMeta meta = item.getItemMeta();
+
+        if (meta != null) {
+            meta.displayName(net.kyori.adventure.text.Component.text(name));
+            meta.lore(lore.stream()
+                .map(s -> net.kyori.adventure.text.Component.text(s))
+                .toList());
+            meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+            item.setItemMeta(meta);
+        }
+
+        return item;
     }
 
     public Inventory getInventory() {

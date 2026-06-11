@@ -5,11 +5,19 @@
 # Настройки крафта
 craft:
   enabled: true
+  shape:
+    - "C D E"
+    - "F L F"
+    - "M N O"
   slots:
-    A: NETHERITE_INGOT
-    B: AMETHYST_SHARD
-    C: BLAZE_ROD
-    D: DIAMOND
+    C: CRYING_OBSIDIAN
+    D: AMETHYST_CLUSTER
+    E: OBSIDIAN
+    F: TINTED_GLASS
+    L: TOTEM_OF_UNDYING
+    M: ENCHANTED_GOLDEN_APPLE
+    N: END_CRYSTAL
+    O: TURTLE_HELMET
   result-name: "§6Блок Способностей"
   result-lore:
     - "§7Поставьте и нажмите ПКМ"

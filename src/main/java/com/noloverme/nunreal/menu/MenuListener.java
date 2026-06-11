@@ -3,6 +3,7 @@ package com.noloverme.nunreal.menu;
 import com.noloverme.nunreal.NUnReal;
 import com.noloverme.nunreal.ability.AbilityType;
 import com.noloverme.nunreal.block.CommandBlockData;
+import com.noloverme.nunreal.util.MaterialUtils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -89,27 +90,28 @@ public class MenuListener implements Listener {
             costAmount = plugin.getConfigManager().getInt("economy.default-cost.amount", 1);
         }
 
-        try {
-            Material material = Material.valueOf(costMaterial);
-            if (player.getInventory().containsAtLeast(new ItemStack(material), costAmount)) {
-                player.getInventory().removeItem(new ItemStack(material, costAmount));
-                plugin.getBlockManager().updateAbility(blockData.getKey(), selected);
-
-                String message = plugin.getConfigManager().getString("economy.messages.ability-set", "§aСпособность §e{ability} §aактивирована!");
-                message = message.replace("{ability}", selected.getDisplayName());
-                player.sendMessage(message);
-
-                player.closeInventory();
-                openMenus.remove(player.getUniqueId().toString());
-
-                syncAbilityForChunk(player);
-            } else {
-                String message = plugin.getConfigManager().getString("economy.messages.not-enough", "§cНедостаточно {item}!");
-                message = message.replace("{item}", costMaterial).replace("{amount}", String.valueOf(costAmount));
-                player.sendMessage(message);
-            }
-        } catch (IllegalArgumentException e) {
+        Material material = MaterialUtils.getMaterial(costMaterial);
+        if (material == null) {
             player.sendMessage("§cОшибка конфигурации материала стоимости!");
+            return;
+        }
+
+        if (player.getInventory().containsAtLeast(new ItemStack(material), costAmount)) {
+            player.getInventory().removeItem(new ItemStack(material, costAmount));
+            plugin.getBlockManager().updateAbility(blockData.getKey(), selected);
+
+            String message = plugin.getConfigManager().getString("economy.messages.ability-set", "§aСпособность §e{ability} §aактивирована!");
+            message = message.replace("{ability}", selected.getDisplayName());
+            player.sendMessage(message);
+
+            player.closeInventory();
+            openMenus.remove(player.getUniqueId().toString());
+
+            syncAbilityForChunk(player);
+        } else {
+            String message = plugin.getConfigManager().getString("economy.messages.not-enough", "§cНедостаточно {item}!");
+            message = message.replace("{item}", costMaterial).replace("{amount}", String.valueOf(costAmount));
+            player.sendMessage(message);
         }
     }
 

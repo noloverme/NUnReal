@@ -2,6 +2,7 @@ package com.noloverme.nunreal.spawner;
 
 import com.noloverme.nunreal.NUnReal;
 import com.noloverme.nunreal.config.ConfigManager;
+import com.noloverme.nunreal.util.MaterialUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -79,10 +80,10 @@ public class SpawnerRecipeManager {
             for (char c = 'A'; c <= 'Z'; c++) {
                 String materialName = config.getString(ingredientsPath + "." + c, null);
                 if (materialName != null) {
-                    try {
-                        Material material = Material.valueOf(materialName);
+                    Material material = MaterialUtils.getMaterial(materialName);
+                    if (material != null) {
                         recipe.setIngredient(c, material);
-                    } catch (IllegalArgumentException e) {
+                    } else {
                         plugin.getLogger().warning("Invalid material for spawner recipe " + type.name() + ": " + materialName);
                         return;
                     }

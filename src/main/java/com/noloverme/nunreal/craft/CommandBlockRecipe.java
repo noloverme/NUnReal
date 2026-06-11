@@ -1,5 +1,6 @@
 package com.noloverme.nunreal.craft;
 
+import com.noloverme.nunreal.util.MaterialUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -21,24 +22,40 @@ public class CommandBlockRecipe {
         }
 
         NamespacedKey key = new NamespacedKey(plugin, "command_block_recipe");
-
         ShapedRecipe recipe = new ShapedRecipe(key, createCommandBlock(plugin));
 
-        String shape1 = plugin.getConfig().getString("craft.shape.1", "ABA");
-        String shape2 = plugin.getConfig().getString("craft.shape.2", "CAC");
-        String shape3 = plugin.getConfig().getString("craft.shape.3", "ADA");
+        // Read shape configuration
+        Object shapeConfig = plugin.getConfig().get("craft.shape");
+        String[] shapeArray = new String[3];
 
-        recipe.shape(shape1, shape2, shape3);
+        if (shapeConfig instanceof List) {
+            List<?> shapeList = (List<?>) shapeConfig;
+            for (int i = 0; i < Math.min(3, shapeList.size()); i++) {
+                Object item = shapeList.get(i);
+                shapeArray[i] = item != null ? item.toString().replace(" ", "") : "";
+            }
+        } else {
+            // Fallback for old format
+            shapeArray[0] = plugin.getConfig().getString("craft.shape.0", "CDE");
+            shapeArray[1] = plugin.getConfig().getString("craft.shape.1", "FLF");
+            shapeArray[2] = plugin.getConfig().getString("craft.shape.2", "MNO");
+        }
 
-        String slotA = plugin.getConfig().getString("craft.slots.A", "NETHERITE_INGOT");
-        String slotB = plugin.getConfig().getString("craft.slots.B", "AMETHYST_SHARD");
-        String slotC = plugin.getConfig().getString("craft.slots.C", "BLAZE_ROD");
-        String slotD = plugin.getConfig().getString("craft.slots.D", "DIAMOND");
+        recipe.shape(shapeArray[0], shapeArray[1], shapeArray[2]);
 
-        recipe.setIngredient('A', Material.valueOf(slotA));
-        recipe.setIngredient('B', Material.valueOf(slotB));
-        recipe.setIngredient('C', Material.valueOf(slotC));
-        recipe.setIngredient('D', Material.valueOf(slotD));
+        try {
+            // Read slots configuration
+            for (char c = 'A'; c <= 'Z'; c++) {
+                String materialName = plugin.getConfig().getString("craft.slots." + c, null);
+                if (materialName != null) {
+                    Material material = MaterialUtils.getMaterialOrThrow(materialName);
+                    recipe.setIngredient(c, material);
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            plugin.getLogger().severe("Failed to register ability block recipe: " + e.getMessage());
+            return;
+        }
 
         Bukkit.addRecipe(recipe);
         plugin.getLogger().info("Ability block recipe registered");
