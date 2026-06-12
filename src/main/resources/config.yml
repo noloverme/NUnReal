@@ -344,6 +344,7 @@ messages:
 spawners:
   enabled: true
   require-silk-touch: true
+  max-per-chunk: 3
 
   item:
     name-format: "§6Спавнер: §e{mob}"
@@ -357,6 +358,7 @@ spawners:
     spawner-broken: "§eСпавнер {mob} получен."
     invalid-spawner: "§cОшибка: неизвестный тип спавнера."
     no-silk-touch: "§cНужен инструмент с Шёлковым касанием."
+    spawner-limit-reached: "§cМаксимум спавнеров в чанке достигнут! (Лимит: {limit})"
 
   mob-names:
     SKELETON: "Скелет"
@@ -386,6 +388,55 @@ spawners:
     CAT: "Кот"
     DROWNED: "Утопленник"
     SNOW_GOLEM: "Снежный голем"
+    BEE: "Пчела"
+    FROG: "Лягушка"
+    ALLAY: "Алай"
+    WARDEN: "Стражник"
+    GUARDIAN: "Страж"
+    WITHER: "Визер"
+    ENDER_DRAGON: "Дракон Края"
+    PHANTOM: "Фантом"
+    BAT: "Летучая мышь"
+    CAVE_SPIDER: "Пещерный паук"
+    SILVERFISH: "Чешуйница"
+    ZOMBIE_VILLAGER: "Зомби-житель"
+    HUSK: "Высохший зомби"
+    STRAY: "Бродяга"
+    PIGLIN: "Пиглин"
+    PIGLIN_BRUTE: "Боец-пиглин"
+    ENDERMITE: "Эндермит"
+    VEX: "Векс"
+    EVOKER: "Чаровник"
+    ILLUSIONER: "Иллюзионист"
+    PILLAGER: "Мародёр"
+    RAVAGER: "Опустошитель"
+    HORSE: "Лошадь"
+    DONKEY: "Осёл"
+    MULE: "Мул"
+    SKELETON_HORSE: "Конь-скелет"
+    ZOMBIE_HORSE: "Конь-зомби"
+    LLAMA: "Лама"
+    TRADER_LLAMA: "Торговая лама"
+    PARROT: "Попугай"
+    RABBIT: "Кролик"
+    PANDA: "Панда"
+    OCELOT: "Оцелот"
+    POLAR_BEAR: "Белый медведь"
+    GOAT: "Коза"
+    FOX: "Лиса"
+    AXOLOTL: "Аксолотль"
+    GLOW_SQUID: "Светящийся кальмар"
+    SQUID: "Кальмар"
+    TROPICAL_FISH: "Тропическая рыба"
+    PUFFERFISH: "Рыба-фугу"
+    DOLPHIN: "Дельфин"
+    WANDERING_TRADER: "Странствующий торговец"
+    CAMEL: "Верблюд"
+    STRIDER: "Странник"
+    ZOGLIN: "Зоглин"
+    BOGGED: "Болотный скелет"
+    CREAKING: "Скрежещущий"
+    TADPOLE: "Головастик"
 
   recipes:
     SKELETON:
@@ -707,4 +758,596 @@ spawners:
         D: "CARVED_PUMPKIN"
         E: "POWDER_SNOW_BUCKET"
         F: "SNOW_BLOCK"
+        A: "DIAMOND"
+    BEE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "HONEYCOMB"
+        D: "HONEY_BOTTLE"
+        E: "HONEYCOMB_BLOCK"
+        F: "SWEET_BERRIES"
+        A: "DIAMOND"
+    FROG:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "LILY_PAD"
+        D: "SLIME_BALL"
+        E: "TADPOLE_BUCKET"
+        F: "MOSS_BLOCK"
+        A: "DIAMOND"
+    ALLAY:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "AMETHYST_SHARD"
+        D: "NOTE_BLOCK"
+        E: "AMETHYST_CLUSTER"
+        F: "GLOWSTONE"
+        A: "DIAMOND"
+    WARDEN:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "SCULK_BLOCK"
+        D: "SCULK_SENSOR"
+        E: "SCULK_SHRIEKER"
+        F: "DIAMOND_BLOCK"
+        B: "NETHERITE_INGOT"
+    GUARDIAN:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A B A"
+      ingredients:
+        C: "PRISMARINE_CRYSTALS"
+        D: "PRISMARINE_SHARD"
+        E: "PRISMARINE"
+        F: "DARK_PRISMARINE"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    WITHER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "WITHER_SKELETON_SKULL"
+        D: "SOUL_SAND"
+        E: "WITHER_SKELETON_SKULL"
+        F: "COAL_BLOCK"
+        B: "NETHERITE_INGOT"
+    ENDER_DRAGON:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "END_ROD"
+        D: "END_CRYSTAL"
+        E: "END_ROD"
+        F: "DRAGON_HEAD"
+        B: "NETHERITE_INGOT"
+    PHANTOM:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "PHANTOM_MEMBRANE"
+        D: "CRYING_OBSIDIAN"
+        E: "PHANTOM_MEMBRANE"
+        F: "AMETHYST_CLUSTER"
+        A: "DIAMOND"
+    BAT:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SPIDER_EYE"
+        D: "COBWEB"
+        E: "STRING"
+        F: "LEATHER"
+        A: "DIAMOND"
+    CAVE_SPIDER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "STRING"
+        D: "FERMENTED_SPIDER_EYE"
+        E: "CAVE_VINES"
+        F: "COBWEB"
+        A: "DIAMOND"
+    SILVERFISH:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "DEEPSLATE"
+        D: "DIAMOND"
+        E: "DIAMOND_ORE"
+        F: "STONE"
+        A: "DIAMOND"
+    ZOMBIE_VILLAGER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "ROTTEN_FLESH"
+        D: "EMERALD"
+        E: "ZOMBIE_HEAD"
+        F: "POISONOUS_POTATO"
+        A: "DIAMOND"
+    HUSK:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SAND"
+        D: "ZOMBIE_HEAD"
+        E: "RED_SAND"
+        F: "ROTTEN_FLESH"
+        A: "DIAMOND"
+    STRAY:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "POWDER_SNOW_BUCKET"
+        D: "BONE"
+        E: "SNOW_BLOCK"
+        F: "ARROW"
+        A: "DIAMOND"
+    PIGLIN:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "GOLD_BLOCK"
+        D: "GOLD_INGOT"
+        E: "GOLD_NUGGET"
+        F: "PORKCHOP"
+        A: "DIAMOND"
+    PIGLIN_BRUTE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "GOLD_BLOCK"
+        D: "GOLDEN_AXE"
+        E: "GOLD_BLOCK"
+        F: "PORKCHOP"
+        B: "NETHERITE_INGOT"
+    ENDERMITE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "ENDER_PEARL"
+        D: "CHORUS_FRUIT"
+        E: "ENDER_PEARL"
+        F: "PURPUR_BLOCK"
+        A: "DIAMOND"
+    VEXER:
+      enabled: false
+    VEX:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "IRON_INGOT"
+        D: "DIAMOND"
+        E: "IRON_INGOT"
+        F: "EMERALD"
+        A: "DIAMOND"
+    EVOKER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "TOTEM_OF_UNDYING"
+        D: "EMERALD_BLOCK"
+        E: "TOTEM_OF_UNDYING"
+        F: "ENCHANTED_BOOK"
+        A: "DIAMOND"
+    ILLUSIONER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "ENCHANTED_BOOK"
+        D: "EMERALD_BLOCK"
+        E: "ENCHANTED_BOOK"
+        F: "POTION"
+        A: "DIAMOND"
+    PILLAGER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "CROSSBOW"
+        D: "DARK_OAK_LOG"
+        E: "IRON_AXE"
+        F: "ARROW"
+        A: "DIAMOND"
+    RAVAGER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "IRON_BLOCK"
+        D: "SADDLE"
+        E: "IRON_BLOCK"
+        F: "DIAMOND_BLOCK"
+        B: "NETHERITE_INGOT"
+    HORSE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "LEATHER"
+        D: "WHEAT"
+        E: "SADDLE"
+        F: "HAY_BLOCK"
+        A: "DIAMOND"
+    DONKEY:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "LEATHER"
+        D: "WHEAT"
+        E: "IRON_INGOT"
+        F: "HAY_BLOCK"
+        A: "DIAMOND"
+    MULE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "LEATHER"
+        D: "WHEAT"
+        E: "CHEST"
+        F: "HAY_BLOCK"
+        A: "DIAMOND"
+    SKELETON_HORSE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "BONE"
+        D: "BONE_BLOCK"
+        E: "BONE"
+        F: "WHEAT"
+        A: "DIAMOND"
+    ZOMBIE_HORSE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "ROTTEN_FLESH"
+        D: "HAY_BLOCK"
+        E: "ROTTEN_FLESH"
+        F: "WHEAT"
+        A: "DIAMOND"
+    LLAMA:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "WOOL"
+        D: "HAY_BLOCK"
+        E: "WOOL"
+        F: "WHITE_WOOL"
+        A: "DIAMOND"
+    TRADER_LLAMA:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A B A"
+      ingredients:
+        C: "WOOL"
+        D: "EMERALD_BLOCK"
+        E: "WOOL"
+        F: "EMERALD"
+        B: "NETHERITE_INGOT"
+        A: "DIAMOND"
+    PARROT:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "FEATHER"
+        D: "BIRCH_LOG"
+        E: "FEATHER"
+        F: "SEEDS"
+        A: "DIAMOND"
+    RABBIT:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "RABBIT_FOOT"
+        D: "CARROT"
+        E: "RABBIT_FOOT"
+        F: "WHEAT"
+        A: "DIAMOND"
+    PANDA:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "BAMBOO"
+        D: "BAMBOO_BLOCK"
+        E: "BAMBOO"
+        F: "BAMBOO"
+        A: "DIAMOND"
+    OCELOT:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "FISH"
+        D: "JUNGLE_LOG"
+        E: "RAW_FISH"
+        F: "LEATHER"
+        A: "DIAMOND"
+    POLAR_BEAR:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SNOW_BLOCK"
+        D: "POWDER_SNOW_BUCKET"
+        E: "PACKED_ICE"
+        F: "SALMON"
+        A: "DIAMOND"
+    GOAT:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "GRASS_BLOCK"
+        D: "HAY_BLOCK"
+        E: "TALL_GRASS"
+        F: "WHEAT"
+        A: "DIAMOND"
+    FOX:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SWEET_BERRIES"
+        D: "CHICKEN"
+        E: "SWEET_BERRIES"
+        F: "LEATHER"
+        A: "DIAMOND"
+    AXOLOTL:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "TROPICAL_FISH"
+        D: "WATER_BUCKET"
+        E: "TROPICAL_FISH"
+        F: "LILY_PAD"
+        A: "DIAMOND"
+    GLOW_SQUID:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "GLOW_INK_SAC"
+        D: "GLOW_LICHEN"
+        E: "GLOW_INK_SAC"
+        F: "WATER_BUCKET"
+        A: "DIAMOND"
+    SQUID:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "INK_SAC"
+        D: "SEAGRASS"
+        E: "INK_SAC"
+        F: "WATER_BUCKET"
+        A: "DIAMOND"
+    TROPICAL_FISH:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "TROPICAL_FISH"
+        D: "SEAGRASS"
+        E: "TROPICAL_FISH"
+        F: "WATER_BUCKET"
+        A: "DIAMOND"
+    PUFFERFISH:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "PUFFERFISH"
+        D: "SEAGRASS"
+        E: "PUFFERFISH"
+        F: "WATER_BUCKET"
+        A: "DIAMOND"
+    DOLPHIN:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "PRISMARINE"
+        D: "SEAGRASS"
+        E: "PRISMARINE"
+        F: "WATER_BUCKET"
+        A: "DIAMOND"
+    WANDERING_TRADER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "EMERALD_BLOCK"
+        D: "DEEPSLATE_EMERALD_ORE"
+        E: "EMERALD_BLOCK"
+        F: "ENCHANTED_BOOK"
+        A: "DIAMOND"
+    CAMEL:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SADDLE"
+        D: "WHEAT"
+        E: "LEATHER"
+        F: "HAY_BLOCK"
+        A: "DIAMOND"
+    STRIDER:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "SADDLE"
+        D: "WARPED_FUNGUS"
+        E: "FUNGUS"
+        F: "WARPED_PLANKS"
+        A: "DIAMOND"
+    ZOGLIN:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "PORKCHOP"
+        D: "GOLD_BLOCK"
+        E: "ZOMBIE_HEAD"
+        F: "ROTTEN_FLESH"
+        B: "NETHERITE_INGOT"
+    BOGGED:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "ARROW"
+        D: "BOW"
+        E: "BONE"
+        F: "BOG_LOGS"
+        A: "DIAMOND"
+    CREAKING:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "B B B"
+      ingredients:
+        C: "PALE_OAK_LOG"
+        D: "DIAMOND_BLOCK"
+        E: "PALE_OAK_LOG"
+        F: "SUSPICIOUS_GRAVEL"
+        B: "NETHERITE_INGOT"
+    TADPOLE:
+      enabled: true
+      shape:
+        - "C D E"
+        - "F A F"
+        - "A A A"
+      ingredients:
+        C: "TADPOLE_BUCKET"
+        D: "LILY_PAD"
+        E: "SLIME_BALL"
+        F: "MOSS_BLOCK"
         A: "DIAMOND"

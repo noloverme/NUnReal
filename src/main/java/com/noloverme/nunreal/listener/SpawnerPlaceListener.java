@@ -3,6 +3,8 @@ package com.noloverme.nunreal.listener;
 import com.noloverme.nunreal.NUnReal;
 import com.noloverme.nunreal.spawner.SpawnerItemFactory;
 import com.noloverme.nunreal.spawner.SpawnerType;
+import org.bukkit.Chunk;
+import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -33,6 +35,18 @@ public class SpawnerPlaceListener implements Listener {
         if (!player.hasPermission("nunreal.spawner.place")) {
             event.setCancelled(true);
             player.sendMessage(plugin.getConfigManager().getString("messages.no-permission", "§cНет прав!"));
+            return;
+        }
+
+        // Check spawner limit in chunk
+        int limit = plugin.getConfigManager().getInt("spawners.max-per-chunk", 3);
+        int spawnerCount = countSpawnersInChunk(event.getBlock().getChunk());
+
+        if (spawnerCount >= limit) {
+            event.setCancelled(true);
+            String message = plugin.getConfigManager().getString("spawners.messages.spawner-limit-reached",
+                "§cМаксимум спавнеров в чанке достигнут! (Лимит: " + limit + ")");
+            player.sendMessage(message);
             return;
         }
 
@@ -73,5 +87,20 @@ public class SpawnerPlaceListener implements Listener {
             plugin.getLogger().severe("Error placing spawner: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private int countSpawnersInChunk(Chunk chunk) {
+        int count = 0;
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
+                for (int y = 0; y < chunk.getWorld().getMaxHeight(); y++) {
+                    Block block = chunk.getBlock(x, y, z);
+                    if (block.getState() instanceof CreatureSpawner) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
     }
 }

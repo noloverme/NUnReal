@@ -70,6 +70,15 @@ public class ConfigManager {
         return config.get(path);
     }
 
+    public org.bukkit.configuration.ConfigurationSection getConfigurationSection(String path) {
+        return config.getConfigurationSection(path);
+    }
+
+    public void setString(String path, String value) {
+        config.set(path, value);
+        saveConfig();
+    }
+
     public FileConfiguration getConfig() {
         return config;
     }

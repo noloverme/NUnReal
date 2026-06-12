@@ -27,8 +27,8 @@ public class SpawnerItemFactory {
     /**
      * Create a custom spawner item for the given type.
      */
-    public static ItemStack createSpawnerItem(SpawnerType type, ConfigManager config) {
-        if (type == null || config == null) {
+    public static ItemStack createSpawnerItem(SpawnerTypeRegistry.SpawnerTypeData typeData, ConfigManager config) {
+        if (typeData == null || config == null) {
             return null;
         }
 
@@ -41,7 +41,7 @@ public class SpawnerItemFactory {
 
         // Set display name
         String nameFormat = config.getString("spawners.item.name-format", "§6Спавнер: §e{mob}");
-        String displayName = nameFormat.replace("{mob}", type.getDisplayName(config));
+        String displayName = nameFormat.replace("{mob}", typeData.getDisplayName());
         meta.displayName(Component.text(displayName));
 
         // Set lore
@@ -64,10 +64,18 @@ public class SpawnerItemFactory {
         // Add PDC marker
         PersistentDataContainer pdc = meta.getPersistentDataContainer();
         org.bukkit.NamespacedKey key = new org.bukkit.NamespacedKey(PDC_NAMESPACE, PDC_KEY);
-        pdc.set(key, PersistentDataType.STRING, type.name());
+        pdc.set(key, PersistentDataType.STRING, typeData.getEnumName());
 
         item.setItemMeta(meta);
         return item;
+    }
+
+    public static ItemStack createSpawnerItem(SpawnerType type, ConfigManager config) {
+        if (type == null || config == null) {
+            return null;
+        }
+        SpawnerTypeRegistry.SpawnerTypeData data = SpawnerTypeRegistry.get(type.getEntityType());
+        return data != null ? createSpawnerItem(data, config) : null;
     }
 
     /**
