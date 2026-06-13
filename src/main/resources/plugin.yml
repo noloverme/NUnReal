@@ -1,5 +1,5 @@
 name: NUnReal
-version: ${project.version}
+version: "${project.version}"
 description: Custom command block plugin with ability modifiers
 main: com.noloverme.nunreal.NUnReal
 api-version: '1.21'

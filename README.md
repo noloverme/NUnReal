@@ -3,7 +3,7 @@
 **Мощный плагин для Paper/Spigot Minecraft, добавляющий систему способностей по чанкам и пользовательские генераторы мобов.**
 
 ```
-Версия: 1.0.1 | API: Minecraft 1.21 | Разработчик: noloverme
+Версия: 1.0.2 | API: Minecraft 1.21 | Разработчик: noloverme
 Статус: Активно поддерживается
 ```
 
@@ -71,11 +71,11 @@ cd NUnReal
 mvn clean package
 ```
 
-Скомпилированный JAR появится по пути: `target/NUnReal-1.0.1.jar`
+Скомпилированный JAR появится по пути: `target/NUnReal-1.0.2.jar`
 
 #### Шаг 3: Установка на сервер
 ```bash
-cp target/NUnReal-1.0.1.jar /path/to/server/plugins/
+cp target/NUnReal-1.0.2.jar /path/to/server/plugins/
 ```
 
 #### Шаг 4: Перезагрузка сервера
@@ -106,22 +106,23 @@ cp target/NUnReal-1.0.1.jar /path/to/server/plugins/
 ```yaml
 craft:
   enabled: true
+  shape:
+    - "C D E"
+    - "F L F"
+    - "M N O"
   slots:
-    A: NETHERITE_INGOT    # Левый верхний угол
-    B: AMETHYST_SHARD     # Верхний центр
-    C: BLAZE_ROD          # Правый верхний угол
-    D: DIAMOND            # Центр + боки
+    C: CRYING_OBSIDIAN
+    D: AMETHYST_CLUSTER
+    E: OBSIDIAN
+    F: TINTED_GLASS
+    L: TOTEM_OF_UNDYING
+    M: ENCHANTED_GOLDEN_APPLE
+    N: END_CRYSTAL
+    O: TURTLE_HELMET
   result-name: "§6Блок Способностей"
   result-lore:
     - "§7Поставьте и нажмите ПКМ"
     - "§7чтобы выбрать способность"
-```
-
-**Логика:** Рецепт будет выглядеть как:
-```
-[A] [B] [C]
-[D] [D] [D]
-[D] [D] [D]
 ```
 
 #### 2. Параметры блоков (blocks)
@@ -427,7 +428,7 @@ NUnReal/
 ├── pom.xml (конфигурация Maven)
 │
 └── target/
-    └── NUnReal-1.0.1.jar (скомпилированный плагин)
+    └── NUnReal-1.0.2.jar (скомпилированный плагин)
 ```
 
 ---
@@ -836,7 +837,7 @@ mvn clean
 
 | Параметр | Значение |
 |----------|----------|
-| Версия | 1.0.1 |
+| Версия | 1.0.2 |
 | Разработчик | noloverme |
 | API версия | 1.21 |
 | Java | 21+ |
@@ -848,4 +849,4 @@ mvn clean
 **Спасибо за использование NUnReal!**
 Для вопросов и предложений обратитесь к разработчику или оставьте issue в репозитории.
 
-<i>Извините что начал заливать с 1.0.1. Пока тестил не закидывал на GitHub. Делал для одного сервера, решил выложить сюда. Может будет кто-то пользоваться. Не знаю.</i>
+<i>Извините что начал заливать с 1.0.2. Пока тестил не закидывал на GitHub. Делал для одного сервера, решил выложить сюда. Может будет кто-то пользоваться. Не знаю.</i>
