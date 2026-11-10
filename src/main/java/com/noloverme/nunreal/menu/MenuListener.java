@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
@@ -25,10 +26,7 @@ public class MenuListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        String title = event.getView().getTitle();
-        String menuTitle = plugin.getConfigManager().getString("menu.title", "§8Выбор способности");
-
-        if (!title.equals(menuTitle)) {
+        if (!(event.getInventory().getHolder() instanceof AbilityMenu menu)) {
             return;
         }
 
@@ -48,7 +46,10 @@ public class MenuListener implements Listener {
         }
 
         Player player = (Player) event.getWhoClicked();
-        CommandBlockData blockData = openMenus.get(player.getUniqueId().toString());
+        CommandBlockData blockData = menu.getBlockData();
+        if (blockData == null) {
+            blockData = openMenus.get(player.getUniqueId().toString());
+        }
 
         if (blockData == null) {
             player.closeInventory();
@@ -112,6 +113,13 @@ public class MenuListener implements Listener {
             String message = plugin.getConfigManager().getString("economy.messages.not-enough", "§cНедостаточно {item}!");
             message = message.replace("{item}", costMaterial).replace("{amount}", String.valueOf(costAmount));
             player.sendMessage(message);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryClose(InventoryCloseEvent event) {
+        if (event.getInventory().getHolder() instanceof AbilityMenu) {
+            openMenus.remove(event.getPlayer().getUniqueId().toString());
         }
     }
 

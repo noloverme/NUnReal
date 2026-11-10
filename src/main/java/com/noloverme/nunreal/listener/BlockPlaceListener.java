@@ -27,7 +27,10 @@ public class BlockPlaceListener implements Listener {
         }
 
         Player player = event.getPlayer();
-        ItemStack item = player.getItemInHand();
+        ItemStack item = event.getItem();
+        if (item == null) {
+            return;
+        }
 
         // Проверяем, что в руке кастомный блок способностей
         if (!CommandBlockRecipe.isAbilityBlock(item)) {
@@ -92,7 +95,11 @@ public class BlockPlaceListener implements Listener {
         if (item.getAmount() > 1) {
             item.setAmount(item.getAmount() - 1);
         } else {
-            player.getInventory().removeItem(item);
+            if (event.getHand() != null) {
+                player.getInventory().setItem(event.getHand(), null);
+            } else {
+                player.getInventory().removeItem(item);
+            }
         }
 
         // Отменяем исходное событие

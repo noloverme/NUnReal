@@ -3,11 +3,14 @@ package com.noloverme.nunreal.menu;
 import com.noloverme.nunreal.ability.AbilityType;
 import com.noloverme.nunreal.block.CommandBlockData;
 import com.noloverme.nunreal.util.MaterialUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -16,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbilityMenu {
+public class AbilityMenu implements InventoryHolder {
     private final JavaPlugin plugin;
     private final Inventory inventory;
     private final CommandBlockData blockData;
@@ -28,7 +31,8 @@ public class AbilityMenu {
         String title = plugin.getConfig().getString("menu.title", "§8Выбор способности");
         int size = plugin.getConfig().getInt("menu.size", 9);
 
-        this.inventory = Bukkit.createInventory(null, size, title);
+        Component titleComponent = LegacyComponentSerializer.legacySection().deserialize(title);
+        this.inventory = Bukkit.createInventory(this, size, titleComponent);
         fillInventory();
     }
 
@@ -44,7 +48,7 @@ public class AbilityMenu {
                 ItemMeta meta = filler.getItemMeta();
 
                 if (meta != null) {
-                    meta.displayName(net.kyori.adventure.text.Component.text(fillerName));
+                    meta.displayName(Component.text(fillerName));
                     meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
                     filler.setItemMeta(meta);
                 }
@@ -105,16 +109,16 @@ public class AbilityMenu {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            meta.displayName(net.kyori.adventure.text.Component.text(name));
+            meta.displayName(Component.text(name));
 
-            List<net.kyori.adventure.text.Component> loreComponents = new ArrayList<>();
+            List<Component> loreComponents = new ArrayList<>();
             for (String loreLine : lore) {
-                loreComponents.add(net.kyori.adventure.text.Component.text(loreLine));
+                loreComponents.add(Component.text(loreLine));
             }
 
             if (blockData.getAbility() == ability) {
                 String activeLine = plugin.getConfig().getString(path + ".active-lore-line", "§aАктивно");
-                loreComponents.add(net.kyori.adventure.text.Component.text(activeLine));
+                loreComponents.add(Component.text(activeLine));
                 meta.addEnchant(Enchantment.BINDING_CURSE, 1, true);
                 meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             }
@@ -142,9 +146,9 @@ public class AbilityMenu {
         ItemMeta meta = item.getItemMeta();
 
         if (meta != null) {
-            meta.displayName(net.kyori.adventure.text.Component.text(name));
+            meta.displayName(Component.text(name));
             meta.lore(lore.stream()
-                .map(s -> net.kyori.adventure.text.Component.text(s))
+                .map(Component::text)
                 .toList());
             meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
             item.setItemMeta(meta);
@@ -153,6 +157,7 @@ public class AbilityMenu {
         return item;
     }
 
+    @Override
     public Inventory getInventory() {
         return inventory;
     }

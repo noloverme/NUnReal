@@ -1,9 +1,11 @@
 package com.noloverme.nunreal.ability;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.UUID;
@@ -58,14 +60,23 @@ public class AbilityManager {
     }
 
     /**
-     * Check if player has specific ability applied.
+     * Remove specific ability if it's currently active.
+     */
+    public void removeAbility(Player player, AbilityType ability) {
+        UUID playerId = player.getUniqueId();
+        AbilityType current = playerCurrentAbility.get(playerId);
+
+        if (current == ability) {
+            removeModifier(player, ability);
+            playerCurrentAbility.remove(playerId);
+        }
+    }
+
+    /**
+     * Check if player has specific ability active.
      */
     public boolean hasAbility(Player player, AbilityType ability) {
-        if (ability == null || ability == AbilityType.NONE || !ability.isAttributeAbility()) {
-            return false;
-        }
-
-        return playerCurrentAbility.getOrDefault(player.getUniqueId(), AbilityType.NONE) == ability;
+        return playerCurrentAbility.get(player.getUniqueId()) == ability;
     }
 
     /**
@@ -75,18 +86,24 @@ public class AbilityManager {
         return playerCurrentAbility.getOrDefault(player.getUniqueId(), AbilityType.NONE);
     }
 
+    private NamespacedKey getModifierKey(AbilityType ability) {
+        return new NamespacedKey(plugin, "ability_" + ability.name().toLowerCase());
+    }
+
     private void addModifier(Player player, AbilityType ability) {
         AttributeInstance instance = player.getAttribute(ability.getAttribute());
         if (instance == null) {
             return;
         }
 
-        String modifierName = "nunreal:" + ability.name().toLowerCase();
+        NamespacedKey key = getModifierKey(ability);
+        instance.removeModifier(key);
+
         AttributeModifier modifier = new AttributeModifier(
-            UUID.nameUUIDFromBytes(modifierName.getBytes()),
-            modifierName,
+            key,
             ability.getValue(),
-            AttributeModifier.Operation.ADD_NUMBER
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlotGroup.ANY
         );
 
         instance.addModifier(modifier);
@@ -98,10 +115,8 @@ public class AbilityManager {
             return;
         }
 
-        String modifierName = "nunreal:" + ability.name().toLowerCase();
-        UUID modifierId = UUID.nameUUIDFromBytes(modifierName.getBytes());
-
-        instance.removeModifier(modifierId);
+        NamespacedKey key = getModifierKey(ability);
+        instance.removeModifier(key);
     }
 
     /**

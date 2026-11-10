@@ -3,7 +3,7 @@
 **Мощный плагин для Paper/Spigot Minecraft, добавляющий систему способностей по чанкам и пользовательские генераторы мобов.**
 
 ```
-Версия: 1.0.2 | API: Minecraft 1.21 | Разработчик: noloverme
+Версия: 1.1a | API: Minecraft 26.3 | Разработчик: noloverme
 Статус: Активно поддерживается
 ```
 
@@ -54,7 +54,7 @@
 
 ```
 Java 21+
-Paper/Spigot Server (протестировано на 1.21.8)
+Paper Server (протестировано на 26.3)
 Maven 3.6+ (для сборки)
 ```
 
@@ -71,11 +71,11 @@ cd NUnReal
 mvn clean package
 ```
 
-Скомпилированный JAR появится по пути: `target/NUnReal-1.0.2.jar`
+Скомпилированный JAR появится по пути: `target/NUnReal-1.1a.jar`
 
 #### Шаг 3: Установка на сервер
 ```bash
-cp target/NUnReal-1.0.2.jar /path/to/server/plugins/
+cp target/NUnReal-1.1a.jar /path/to/server/plugins/
 ```
 
 #### Шаг 4: Перезагрузка сервера
@@ -428,7 +428,7 @@ NUnReal/
 ├── pom.xml (конфигурация Maven)
 │
 └── target/
-    └── NUnReal-1.0.2.jar (скомпилированный плагин)
+    └── NUnReal-1.1a.jar (скомпилированный плагин)
 ```
 
 ---
@@ -814,7 +814,7 @@ mvn clean
   <dependency>
     <groupId>io.papermc.paper</groupId>
     <artifactId>paper-api</artifactId>
-    <version>26.1.2.build.66-stable</version>
+    <version>26.3.build.248-stable</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -837,9 +837,9 @@ mvn clean
 
 | Параметр | Значение |
 |----------|----------|
-| Версия | 1.0.2 |
+| Версия | 1.1a |
 | Разработчик | noloverme |
-| API версия | 1.21 |
+| API версия | 26.3 |
 | Java | 21+ |
 | Статус | Активно поддерживается |
 | Девиз | "Невозможное возможно, наверное" |

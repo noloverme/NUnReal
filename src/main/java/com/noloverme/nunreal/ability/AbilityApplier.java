@@ -1,18 +1,22 @@
 package com.noloverme.nunreal.ability;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.UUID;
 
 public class AbilityApplier {
     private final JavaPlugin plugin;
 
     public AbilityApplier(JavaPlugin plugin) {
         this.plugin = plugin;
+    }
+
+    private NamespacedKey getModifierKey(AbilityType ability) {
+        return new NamespacedKey(plugin, "ability_" + ability.name().toLowerCase());
     }
 
     public void applyAbility(Player player, AbilityType ability) {
@@ -27,12 +31,12 @@ public class AbilityApplier {
             return;
         }
 
-        String modifierName = "nunreal:" + ability.name().toLowerCase();
+        NamespacedKey key = getModifierKey(ability);
         AttributeModifier modifier = new AttributeModifier(
-            UUID.nameUUIDFromBytes(modifierName.getBytes()),
-            modifierName,
+            key,
             ability.getValue(),
-            AttributeModifier.Operation.ADD_NUMBER
+            AttributeModifier.Operation.ADD_NUMBER,
+            EquipmentSlotGroup.ANY
         );
 
         instance.addModifier(modifier);
@@ -48,10 +52,8 @@ public class AbilityApplier {
             return;
         }
 
-        String modifierName = "nunreal:" + ability.name().toLowerCase();
-        UUID modifierId = UUID.nameUUIDFromBytes(modifierName.getBytes());
-
-        instance.removeModifier(modifierId);
+        NamespacedKey key = getModifierKey(ability);
+        instance.removeModifier(key);
     }
 
     public void removeAllModifiers(Player player) {
@@ -73,10 +75,7 @@ public class AbilityApplier {
             return false;
         }
 
-        String modifierName = "nunreal:" + ability.name().toLowerCase();
-        UUID modifierId = UUID.nameUUIDFromBytes(modifierName.getBytes());
-
-        return instance.getModifiers().stream()
-            .anyMatch(m -> m.getUniqueId().equals(modifierId));
+        NamespacedKey key = getModifierKey(ability);
+        return instance.getModifier(key) != null;
     }
 }

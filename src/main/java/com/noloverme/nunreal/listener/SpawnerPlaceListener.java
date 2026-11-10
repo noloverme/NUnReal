@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * Handles placement of custom spawner items and sets the correct entity type.
@@ -24,12 +25,13 @@ public class SpawnerPlaceListener implements Listener {
 
     @EventHandler
     public void onSpawnerPlace(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        ItemStack item = player.getInventory().getItem(event.getHand());
+
         // Check if placed item is a custom spawner
-        if (!SpawnerItemFactory.isCustomSpawner(event.getItemInHand())) {
+        if (!SpawnerItemFactory.isCustomSpawner(item)) {
             return;
         }
-
-        Player player = event.getPlayer();
 
         // Check permission
         if (!player.hasPermission("nunreal.spawner.place")) {
@@ -51,7 +53,7 @@ public class SpawnerPlaceListener implements Listener {
         }
 
         // Get spawner type from item
-        SpawnerType type = SpawnerItemFactory.getSpawnerType(event.getItemInHand());
+        SpawnerType type = SpawnerItemFactory.getSpawnerType(item);
         if (type == null) {
             String message = plugin.getConfigManager().getString("spawners.messages.invalid-spawner", "§cОшибка: неизвестный тип спавнера.");
             player.sendMessage(message);
